@@ -10,10 +10,10 @@ import {
 
 export default function LandingPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-[#030712] text-white overflow-hidden">
+    <div className="flex flex-col min-h-screen bg-background text-foreground overflow-hidden">
       
       {/* Navigation */}
-      <header className="fixed top-0 w-full z-50 bg-[#030712]/80 backdrop-blur-md border-b border-white/10">
+      <header className="fixed top-0 w-full z-50 bg-background backdrop-blur-md border-b border-border">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="h-8 w-8 rounded-lg bg-primary/20 flex items-center justify-center border border-primary/50">
@@ -21,18 +21,18 @@ export default function LandingPage() {
             </div>
             <span className="text-xl font-bold tracking-tight">Spark Radar</span>
           </div>
-          <nav className="hidden md:flex gap-8 text-sm font-medium text-white/70">
-            <Link href="#engines" className="hover:text-white transition-colors">The 5 Engines</Link>
-            <Link href="#workspaces" className="hover:text-white transition-colors">Workspaces</Link>
-            <Link href="#ai" className="hover:text-white transition-colors">Spark AI</Link>
-            <Link href="#pricing" className="hover:text-white transition-colors">Pricing</Link>
+          <nav className="hidden md:flex gap-8 text-sm font-medium text-muted-foreground">
+            <Link href="#engines" className="hover:text-foreground transition-colors">The 5 Engines</Link>
+            <Link href="#workspaces" className="hover:text-foreground transition-colors">Workspaces</Link>
+            <Link href="#ai" className="hover:text-foreground transition-colors">Spark AI</Link>
+            <Link href="#pricing" className="hover:text-foreground transition-colors">Pricing</Link>
           </nav>
           <div className="flex items-center gap-4">
             <Link href="/login" className="text-sm font-medium hover:text-primary transition-colors hidden sm:block">
               Sign In
             </Link>
-            <Link href="/login">
-              <Button className="rounded-full bg-primary hover:bg-primary/90 text-white border-0">
+            <Link href="/signup">
+              <Button className="rounded-full bg-primary hover:bg-primary/90 text-foreground border-0">
                 Start Free
               </Button>
             </Link>
@@ -68,13 +68,13 @@ export default function LandingPage() {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 mt-8">
-                <Link href="/login">
-                  <Button size="lg" className="h-14 px-8 text-base rounded-full bg-primary hover:bg-primary/90 text-white shadow-[0_0_30px_rgba(124,58,237,0.4)] transition-all hover:scale-105">
+                <Link href="/signup">
+                  <Button size="lg" className="h-14 px-8 text-base rounded-full bg-primary hover:bg-primary/90 text-foreground shadow-[0_0_30px_rgba(124,58,237,0.4)] transition-all hover:scale-105">
                     Start Free
                   </Button>
                 </Link>
                 <Link href="#engines">
-                  <Button size="lg" variant="outline" className="h-14 px-8 text-base rounded-full border-white/20 bg-white/5 hover:bg-white/10 text-white backdrop-blur-sm transition-all hover:scale-105">
+                  <Button size="lg" variant="outline" className="h-14 px-8 text-base rounded-full border-border bg-muted hover:bg-muted-foreground/10 text-foreground backdrop-blur-sm transition-all hover:scale-105">
                     See How It Works
                   </Button>
                 </Link>
@@ -84,9 +84,9 @@ export default function LandingPage() {
         </section>
 
         {/* PROBLEM STATEMENT */}
-        <section className="w-full py-24 bg-black/50 border-y border-white/5 relative overflow-hidden">
+        <section className="w-full py-24 bg-card border-y border-border relative overflow-hidden">
           <div className="container px-4 text-center relative z-10">
-            <p className="text-xl md:text-3xl font-medium leading-relaxed max-w-4xl mx-auto text-white/90">
+            <p className="text-xl md:text-3xl font-medium leading-relaxed max-w-4xl mx-auto text-muted-foreground">
               "What do I need to collect, pay, renew, repair, follow up or complete — and when?"
             </p>
             <p className="mt-6 text-primary font-semibold tracking-wide uppercase text-sm">
@@ -104,12 +104,12 @@ export default function LandingPage() {
             </div>
 
             <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              <div className="glass-panel p-10 rounded-3xl border border-white/10 relative overflow-hidden group hover:border-primary/50 transition-colors">
+              <div className="glass-panel p-10 rounded-3xl border border-border relative overflow-hidden group hover:border-primary/50 transition-colors">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-[80px] -z-10 group-hover:bg-blue-500/20 transition-colors" />
                 <User className="h-12 w-12 text-blue-400 mb-6" />
                 <h3 className="text-2xl font-bold mb-2">Personal Workspace</h3>
                 <p className="text-muted-foreground mb-8">For normal users managing life's admin.</p>
-                <ul className="grid grid-cols-2 gap-y-3 gap-x-4 text-sm text-white/80">
+                <ul className="grid grid-cols-2 gap-y-3 gap-x-4 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> Bills & Insurance</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> Vehicle Service</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> Documents</li>
@@ -119,12 +119,12 @@ export default function LandingPage() {
                 </ul>
               </div>
 
-              <div className="glass-panel p-10 rounded-3xl border border-white/10 relative overflow-hidden group hover:border-primary/50 transition-colors">
+              <div className="glass-panel p-10 rounded-3xl border border-border relative overflow-hidden group hover:border-primary/50 transition-colors">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-[80px] -z-10 group-hover:bg-purple-500/20 transition-colors" />
                 <Building2 className="h-12 w-12 text-primary mb-6" />
                 <h3 className="text-2xl font-bold mb-2">Business Workspace</h3>
                 <p className="text-muted-foreground mb-8">For companies tracking operations.</p>
-                <ul className="grid grid-cols-2 gap-y-3 gap-x-4 text-sm text-white/80">
+                <ul className="grid grid-cols-2 gap-y-3 gap-x-4 text-sm text-muted-foreground">
                   <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> Receivables & Invoices</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> Vendor Management</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> Contracts & AMCs</li>
@@ -138,7 +138,7 @@ export default function LandingPage() {
         </section>
 
         {/* THE FIVE ENGINES */}
-        <section id="engines" className="w-full py-24 bg-black/40 border-y border-white/5">
+        <section id="engines" className="w-full py-24 bg-card border-y border-border">
           <div className="container px-4">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">The Spark Radar Engines</h2>
@@ -151,10 +151,10 @@ export default function LandingPage() {
                 <Wallet className="h-10 w-10 text-emerald-400 mb-4" />
                 <h3 className="text-xl font-bold mb-2">Spark Collect</h3>
                 <p className="text-sm text-muted-foreground mb-4">Track money that should be received. Automate aging, payment links, and reminders.</p>
-                <div className="bg-black/50 p-4 rounded-xl border border-white/5 text-sm">
-                  <div className="flex justify-between mb-2"><span className="text-white/60">Invoice:</span><span>INV-1045</span></div>
-                  <div className="flex justify-between mb-2"><span className="text-white/60">Amount:</span><span className="font-bold text-emerald-400">₹39,000</span></div>
-                  <div className="flex justify-between"><span className="text-white/60">Status:</span><span className="text-yellow-400 flex items-center gap-1"><AlertCircle className="w-3 h-3"/> Pending</span></div>
+                <div className="bg-card p-4 rounded-xl border border-border text-sm">
+                  <div className="flex justify-between mb-2"><span className="text-muted-foreground">Invoice:</span><span>INV-1045</span></div>
+                  <div className="flex justify-between mb-2"><span className="text-muted-foreground">Amount:</span><span className="font-bold text-emerald-400">₹39,000</span></div>
+                  <div className="flex justify-between"><span className="text-muted-foreground">Status:</span><span className="text-yellow-400 flex items-center gap-1"><AlertCircle className="w-3 h-3"/> Pending</span></div>
                 </div>
               </div>
 
@@ -163,10 +163,10 @@ export default function LandingPage() {
                 <RotateCw className="h-10 w-10 text-blue-400 mb-4" />
                 <h3 className="text-xl font-bold mb-2">Spark Renew</h3>
                 <p className="text-sm text-muted-foreground mb-4">Anything with an expiration date. Contracts, domains, insurance, and AMCs.</p>
-                <div className="bg-black/50 p-4 rounded-xl border border-white/5 text-sm space-y-2">
-                  <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-red-500"/> <span className="text-white/60">1 day:</span> Critical</div>
-                  <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-orange-500"/> <span className="text-white/60">7 days:</span> Urgent</div>
-                  <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-yellow-500"/> <span className="text-white/60">14 days:</span> Attention</div>
+                <div className="bg-card p-4 rounded-xl border border-border text-sm space-y-2">
+                  <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-red-500"/> <span className="text-muted-foreground">1 day:</span> Critical</div>
+                  <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-orange-500"/> <span className="text-muted-foreground">7 days:</span> Urgent</div>
+                  <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-yellow-500"/> <span className="text-muted-foreground">14 days:</span> Attention</div>
                 </div>
               </div>
 
@@ -175,11 +175,11 @@ export default function LandingPage() {
                 <Wrench className="h-10 w-10 text-orange-400 mb-4" />
                 <h3 className="text-xl font-bold mb-2">Spark Repair</h3>
                 <p className="text-sm text-muted-foreground mb-4">Track customer service jobs step-by-step from estimate to final delivery.</p>
-                <div className="bg-black/50 p-4 rounded-xl border border-white/5 text-sm relative">
-                  <div className="absolute left-[21px] top-6 bottom-6 w-px bg-white/10" />
+                <div className="bg-card p-4 rounded-xl border border-border text-sm relative">
+                  <div className="absolute left-[21px] top-6 bottom-6 w-px bg-muted-foreground/10" />
                   <div className="flex items-center gap-3 mb-3 relative z-10"><CheckCircle2 className="w-4 h-4 text-emerald-400"/> Diagnosis</div>
                   <div className="flex items-center gap-3 mb-3 relative z-10"><Clock className="w-4 h-4 text-yellow-400"/> Approval</div>
-                  <div className="flex items-center gap-3 relative z-10"><div className="w-4 h-4 rounded-full border-2 border-white/20"/> Repair</div>
+                  <div className="flex items-center gap-3 relative z-10"><div className="w-4 h-4 rounded-full border-2 border-border"/> Repair</div>
                 </div>
               </div>
 
@@ -188,10 +188,10 @@ export default function LandingPage() {
                 <Package className="h-10 w-10 text-purple-400 mb-4" />
                 <h3 className="text-xl font-bold mb-2">Spark Vendor</h3>
                 <p className="text-sm text-muted-foreground mb-4">Track purchase orders, expected deliveries, pending payments, and vendor docs.</p>
-                <div className="bg-black/50 p-4 rounded-xl border border-white/5 text-sm">
+                <div className="bg-card p-4 rounded-xl border border-border text-sm">
                   <div className="font-medium mb-2">Vendor: XYZ Auto Parts</div>
-                  <div className="flex justify-between mb-1"><span className="text-white/60">Delivery:</span><span>Expected 30 Sep</span></div>
-                  <div className="flex justify-between"><span className="text-white/60">Payment:</span><span className="text-yellow-400">₹45,000 pending</span></div>
+                  <div className="flex justify-between mb-1"><span className="text-muted-foreground">Delivery:</span><span>Expected 30 Sep</span></div>
+                  <div className="flex justify-between"><span className="text-muted-foreground">Payment:</span><span className="text-yellow-400">₹45,000 pending</span></div>
                 </div>
               </div>
 
@@ -202,7 +202,7 @@ export default function LandingPage() {
                 <p className="text-sm text-muted-foreground mb-4 max-w-2xl">Because people forget bills, documents, and important dates. Expanding Spark Radar from a business SaaS into an essential tool for everyday life.</p>
                 <div className="flex flex-wrap gap-2">
                   {['Electricity bill', 'Passport', 'Driving licence', 'Medical appointment', 'School fee'].map(tag => (
-                    <span key={tag} className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-white/80">{tag}</span>
+                    <span key={tag} className="px-3 py-1 bg-muted border border-border rounded-full text-xs text-muted-foreground">{tag}</span>
                   ))}
                 </div>
               </div>
@@ -223,22 +223,22 @@ export default function LandingPage() {
                   The AI understands your actual Spark Radar records. Ask natural questions, get exact data, and let the AI execute authorized commands like creating reminders or drafting invoices.
                 </p>
                 <ul className="space-y-4">
-                  <li className="flex items-center gap-3 bg-white/5 p-3 rounded-lg border border-white/5">
+                  <li className="flex items-center gap-3 bg-muted p-3 rounded-lg border border-border">
                     <Search className="w-5 h-5 text-primary" /> "Show overdue payments."
                   </li>
-                  <li className="flex items-center gap-3 bg-white/5 p-3 rounded-lg border border-white/5">
+                  <li className="flex items-center gap-3 bg-muted p-3 rounded-lg border border-border">
                     <Search className="w-5 h-5 text-primary" /> "Which renewals are coming this month?"
                   </li>
-                  <li className="flex items-center gap-3 bg-white/5 p-3 rounded-lg border border-white/5">
+                  <li className="flex items-center gap-3 bg-muted p-3 rounded-lg border border-border">
                     <Search className="w-5 h-5 text-primary" /> "What should I handle today?"
                   </li>
                 </ul>
               </div>
-              <div className="glass-panel p-6 rounded-3xl border border-white/10">
-                <div className="bg-black/50 rounded-2xl p-6 border border-white/5 font-mono text-sm leading-relaxed">
-                  <div className="text-white/50 mb-4">{">"} What is going to become a problem in the next 30 days?</div>
+              <div className="glass-panel p-6 rounded-3xl border border-border">
+                <div className="bg-card rounded-2xl p-6 border border-border font-mono text-sm leading-relaxed">
+                  <div className="text-muted-foreground mb-4">{">"} What is going to become a problem in the next 30 days?</div>
                   <div className="text-primary mb-2">Analyzing database records...</div>
-                  <div className="text-white/90">3 important items need attention:</div>
+                  <div className="text-muted-foreground">3 important items need attention:</div>
                   <br/>
                   <div className="text-red-400">1. Car insurance expires in 9 days.</div>
                   <div className="text-orange-400">2. ABC Traders payment of ₹39,000 is overdue.</div>
@@ -250,7 +250,7 @@ export default function LandingPage() {
         </section>
 
         {/* PRICING */}
-        <section id="pricing" className="w-full py-24 bg-black/40 border-y border-white/5">
+        <section id="pricing" className="w-full py-24 bg-card border-y border-border">
           <div className="container px-4">
             <div className="text-center mb-16">
               <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Pricing Structure</h2>
@@ -260,7 +260,7 @@ export default function LandingPage() {
             <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
               
               <div className="glass-panel p-6 rounded-2xl flex flex-col">
-                <h3 className="font-bold text-lg text-white/80">Free</h3>
+                <h3 className="font-bold text-lg text-muted-foreground">Free</h3>
                 <div className="text-3xl font-bold my-4">₹0<span className="text-sm font-normal text-muted-foreground">/mo</span></div>
                 <ul className="text-sm text-muted-foreground space-y-3 mb-8 flex-1">
                   <li>20 active records</li>
@@ -268,11 +268,11 @@ export default function LandingPage() {
                   <li>1 user</li>
                   <li>Basic reminders</li>
                 </ul>
-                <Button variant="outline" className="w-full border-white/20 bg-white/5 hover:bg-white/10 text-white">Start Free</Button>
+                <Button variant="outline" className="w-full border-border bg-muted hover:bg-muted-foreground/10 text-foreground">Start Free</Button>
               </div>
 
               <div className="glass-panel p-6 rounded-2xl flex flex-col">
-                <h3 className="font-bold text-lg text-white/80">Personal</h3>
+                <h3 className="font-bold text-lg text-muted-foreground">Personal</h3>
                 <div className="text-3xl font-bold my-4">₹199<span className="text-sm font-normal text-muted-foreground">/mo</span></div>
                 <ul className="text-sm text-muted-foreground space-y-3 mb-8 flex-1">
                   <li>100 records</li>
@@ -280,7 +280,7 @@ export default function LandingPage() {
                   <li>Documents</li>
                   <li>Email notifications</li>
                 </ul>
-                <Button variant="outline" className="w-full border-white/20 bg-white/5 hover:bg-white/10 text-white">Choose Plan</Button>
+                <Button variant="outline" className="w-full border-border bg-muted hover:bg-muted-foreground/10 text-foreground">Choose Plan</Button>
               </div>
 
               <div className="glass-panel p-6 rounded-2xl flex flex-col border-primary/50 relative overflow-hidden">
@@ -293,11 +293,11 @@ export default function LandingPage() {
                   <li>Customers</li>
                   <li>Collect & Renew modules</li>
                 </ul>
-                <Button className="w-full bg-primary hover:bg-primary/90 text-white">Choose Plan</Button>
+                <Button className="w-full bg-primary hover:bg-primary/90 text-foreground">Choose Plan</Button>
               </div>
 
               <div className="glass-panel p-6 rounded-2xl flex flex-col">
-                <h3 className="font-bold text-lg text-white/80">Business Pro</h3>
+                <h3 className="font-bold text-lg text-muted-foreground">Business Pro</h3>
                 <div className="text-3xl font-bold my-4">₹999<span className="text-sm font-normal text-muted-foreground">/mo</span></div>
                 <ul className="text-sm text-muted-foreground space-y-3 mb-8 flex-1">
                   <li>2,500 records</li>
@@ -305,11 +305,11 @@ export default function LandingPage() {
                   <li>AI Assistant</li>
                   <li>Vendor & Reports</li>
                 </ul>
-                <Button variant="outline" className="w-full border-white/20 bg-white/5 hover:bg-white/10 text-white">Choose Plan</Button>
+                <Button variant="outline" className="w-full border-border bg-muted hover:bg-muted-foreground/10 text-foreground">Choose Plan</Button>
               </div>
 
               <div className="glass-panel p-6 rounded-2xl flex flex-col">
-                <h3 className="font-bold text-lg text-white/80">Business Plus</h3>
+                <h3 className="font-bold text-lg text-muted-foreground">Business Plus</h3>
                 <div className="text-3xl font-bold my-4">₹1,999<span className="text-sm font-normal text-muted-foreground">/mo</span></div>
                 <ul className="text-sm text-muted-foreground space-y-3 mb-8 flex-1">
                   <li>10,000+ records</li>
@@ -317,7 +317,7 @@ export default function LandingPage() {
                   <li>Advanced reports</li>
                   <li>API & Priority support</li>
                 </ul>
-                <Button variant="outline" className="w-full border-white/20 bg-white/5 hover:bg-white/10 text-white">Choose Plan</Button>
+                <Button variant="outline" className="w-full border-border bg-muted hover:bg-muted-foreground/10 text-foreground">Choose Plan</Button>
               </div>
 
             </div>
@@ -327,7 +327,7 @@ export default function LandingPage() {
       </main>
 
       {/* FOOTER */}
-      <footer className="border-t border-white/10 bg-background py-12">
+      <footer className="border-t border-border bg-background py-12">
         <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-2">
             <Zap className="h-5 w-5 text-primary" />
@@ -337,9 +337,9 @@ export default function LandingPage() {
             © {new Date().getFullYear()} Spark Radar Inc. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm text-muted-foreground">
-            <Link href="#" className="hover:text-white transition-colors">Privacy</Link>
-            <Link href="#" className="hover:text-white transition-colors">Terms</Link>
-            <Link href="#" className="hover:text-white transition-colors">Contact</Link>
+            <Link href="#" className="hover:text-foreground transition-colors">Privacy</Link>
+            <Link href="#" className="hover:text-foreground transition-colors">Terms</Link>
+            <Link href="#" className="hover:text-foreground transition-colors">Contact</Link>
           </div>
         </div>
       </footer>

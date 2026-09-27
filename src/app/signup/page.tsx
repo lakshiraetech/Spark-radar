@@ -9,17 +9,17 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { signup } from "../actions/auth"
 
-export default function SignupPage() {
+export default function SignupPage({
+  searchParams,
+}: {
+  searchParams: { error?: string; message?: string }
+}) {
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
 
   const handleSimulatedAuth = (e: React.FormEvent) => {
     e.preventDefault()
-    setIsLoading(true)
-    setTimeout(() => {
-      setIsLoading(false)
-      router.push("/dashboard")
-    }, 1500)
+    alert("OAuth login is not configured yet. Please sign up with email.")
   }
 
   return (
@@ -27,23 +27,23 @@ export default function SignupPage() {
       {/* Dynamic Background */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] -z-10 pointer-events-none" />
       
-      <div className="w-full max-w-6xl mx-auto flex flex-col lg:flex-row my-8 rounded-3xl overflow-hidden glass-panel shadow-2xl z-10 relative border border-white/10">
+      <div className="w-full max-w-6xl mx-auto flex flex-col lg:flex-row my-8 rounded-3xl overflow-hidden glass-panel shadow-2xl z-10 relative border border-border">
         
         {/* Left Side - Copy */}
-        <div className="hidden lg:flex flex-col justify-between p-12 bg-black/40 border-r border-white/10 w-1/2 relative overflow-hidden">
+        <div className="hidden lg:flex flex-col justify-between p-12 bg-card border-r border-border w-1/2 relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-full bg-primary/5 z-0 pointer-events-none" />
           
           <div className="relative z-10">
             <div className="flex items-center gap-2 mb-12">
               <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center shadow-[0_0_15px_rgba(124,58,237,0.5)]">
-                <Zap className="h-5 w-5 text-white" />
+                <Zap className="h-5 w-5 text-foreground" />
               </div>
-              <span className="font-bold text-xl tracking-tight text-white">Spark Radar</span>
+              <span className="font-bold text-xl tracking-tight text-foreground">Spark Radar</span>
             </div>
 
             <div className="space-y-8">
               <div>
-                <h2 className="text-3xl font-bold tracking-tight text-white mb-6 leading-tight">
+                <h2 className="text-3xl font-bold tracking-tight text-foreground mb-6 leading-tight">
                   One intelligent radar for every important payment, renewal, repair, document, vendor and task.
                 </h2>
                 <div className="bg-primary/10 border border-primary/20 p-4 rounded-xl">
@@ -54,8 +54,8 @@ export default function SignupPage() {
               </div>
 
               <div className="space-y-6 pt-6">
-                <div className="bg-white/5 border border-white/10 p-5 rounded-xl">
-                  <h3 className="text-white font-semibold mb-3 flex items-center gap-2">
+                <div className="bg-muted border border-border p-5 rounded-xl">
+                  <h3 className="text-foreground font-semibold mb-3 flex items-center gap-2">
                     <div className="h-2 w-2 rounded-full bg-blue-500" />
                     Personal Workspace
                   </h3>
@@ -64,8 +64,8 @@ export default function SignupPage() {
                   </p>
                 </div>
                 
-                <div className="bg-white/5 border border-white/10 p-5 rounded-xl">
-                  <h3 className="text-white font-semibold mb-3 flex items-center gap-2">
+                <div className="bg-muted border border-border p-5 rounded-xl">
+                  <h3 className="text-foreground font-semibold mb-3 flex items-center gap-2">
                     <div className="h-2 w-2 rounded-full bg-purple-500" />
                     Business Workspace
                   </h3>
@@ -79,7 +79,7 @@ export default function SignupPage() {
         </div>
 
         {/* Right Side - Form */}
-        <div className="w-full lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center bg-black/20">
+        <div className="w-full lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center bg-card">
           <motion.div 
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -88,23 +88,35 @@ export default function SignupPage() {
           >
             <div className="flex flex-col items-center mb-8 lg:hidden">
               <div className="h-12 w-12 rounded-xl bg-primary flex items-center justify-center mb-4 shadow-[0_0_20px_rgba(124,58,237,0.5)]">
-                <Zap className="h-6 w-6 text-white" />
+                <Zap className="h-6 w-6 text-foreground" />
               </div>
-              <h1 className="text-3xl font-bold tracking-tight text-white mb-2">Spark Radar</h1>
+              <h1 className="text-3xl font-bold tracking-tight text-foreground mb-2">Spark Radar</h1>
               <p className="text-muted-foreground text-center">
                 One intelligent radar for every important task.
               </p>
             </div>
 
             <div className="mb-8 hidden lg:block">
-              <h2 className="text-2xl font-bold text-white mb-2">Create your account</h2>
+              <h2 className="text-2xl font-bold text-foreground mb-2">Create your account</h2>
               <p className="text-muted-foreground">Start tracking what matters most.</p>
             </div>
+
+            {searchParams?.error && (
+              <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-500 text-sm">
+                {searchParams.error}
+              </div>
+            )}
+            
+            {searchParams?.message && (
+              <div className="mb-6 p-4 bg-green-500/10 border border-green-500/20 rounded-xl text-green-500 text-sm">
+                {searchParams.message}
+              </div>
+            )}
 
             <div className="space-y-4">
               <Button 
                 variant="outline" 
-                className="w-full h-12 bg-white/5 border-white/10 hover:bg-white/10 text-white rounded-xl transition-all"
+                className="w-full h-12 bg-muted border-border hover:bg-muted-foreground/10 text-foreground rounded-xl transition-all"
                 onClick={() => handleSimulatedAuth({ preventDefault: () => {} } as any)}
               >
                 <svg viewBox="0 0 24 24" className="mr-2 h-5 w-5" fill="currentColor">
@@ -114,7 +126,7 @@ export default function SignupPage() {
               </Button>
               <Button 
                 variant="outline" 
-                className="w-full h-12 bg-white/5 border-white/10 hover:bg-white/10 text-white rounded-xl transition-all"
+                className="w-full h-12 bg-muted border-border hover:bg-muted-foreground/10 text-foreground rounded-xl transition-all"
                 onClick={() => handleSimulatedAuth({ preventDefault: () => {} } as any)}
               >
                 <svg viewBox="0 0 24 24" className="mr-2 h-5 w-5" fill="currentColor">
@@ -129,10 +141,10 @@ export default function SignupPage() {
 
             <div className="relative my-8">
               <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t border-white/10" />
+                <span className="w-full border-t border-border" />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-[#121212] px-2 text-muted-foreground">
+                <span className="bg-background px-2 text-muted-foreground">
                   Or sign up with email
                 </span>
               </div>
@@ -144,7 +156,7 @@ export default function SignupPage() {
                   name="fullName"
                   type="text" 
                   placeholder="Full Name" 
-                  className="h-12 bg-black/40 border-white/10 text-white placeholder:text-muted-foreground focus-visible:ring-primary rounded-xl"
+                  className="h-12 bg-card border-border text-foreground placeholder:text-muted-foreground focus-visible:ring-primary rounded-xl"
                   required
                 />
               </div>
@@ -153,7 +165,7 @@ export default function SignupPage() {
                   name="companyName"
                   type="text" 
                   placeholder="Company Name (Optional)" 
-                  className="h-12 bg-black/40 border-white/10 text-white placeholder:text-muted-foreground focus-visible:ring-primary rounded-xl"
+                  className="h-12 bg-card border-border text-foreground placeholder:text-muted-foreground focus-visible:ring-primary rounded-xl"
                 />
               </div>
               <div className="space-y-2">
@@ -161,7 +173,7 @@ export default function SignupPage() {
                   name="email"
                   type="email" 
                   placeholder="name@company.com" 
-                  className="h-12 bg-black/40 border-white/10 text-white placeholder:text-muted-foreground focus-visible:ring-primary rounded-xl"
+                  className="h-12 bg-card border-border text-foreground placeholder:text-muted-foreground focus-visible:ring-primary rounded-xl"
                   required
                 />
               </div>
@@ -170,14 +182,14 @@ export default function SignupPage() {
                   name="password"
                   type="password" 
                   placeholder="Create a password" 
-                  className="h-12 bg-black/40 border-white/10 text-white placeholder:text-muted-foreground focus-visible:ring-primary rounded-xl"
+                  className="h-12 bg-card border-border text-foreground placeholder:text-muted-foreground focus-visible:ring-primary rounded-xl"
                   required
                 />
               </div>
               
               <Button 
                 type="submit" 
-                className="w-full h-12 bg-primary hover:bg-primary/90 text-white rounded-xl font-medium mt-2 shadow-[0_0_20px_rgba(124,58,237,0.3)] transition-all flex items-center justify-center gap-2"
+                className="w-full h-12 bg-primary hover:bg-primary/90 text-foreground rounded-xl font-medium mt-2 shadow-[0_0_20px_rgba(124,58,237,0.3)] transition-all flex items-center justify-center gap-2"
               >
                 Create Account <ArrowRight className="h-4 w-4" />
               </Button>

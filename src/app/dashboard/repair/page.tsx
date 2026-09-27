@@ -34,45 +34,45 @@ export default async function RepairPage() {
           <h1 className="text-3xl font-bold tracking-tight">Repairs & Assets</h1>
           <p className="text-muted-foreground mt-1">Manage physical assets, maintenance schedules, and repair tickets.</p>
         </div>
-        <Button className="bg-primary hover:bg-primary/90 text-white rounded-xl">
+        <Button className="bg-primary hover:bg-primary/90 text-foreground rounded-xl">
           <PlusCircle className="mr-2 h-4 w-4" />
           Log Repair Issue
         </Button>
       </div>
 
       <div className="grid gap-4 md:grid-cols-3">
-        <div className="rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
+        <div className="rounded-xl border border-border bg-muted p-6 backdrop-blur-sm">
           <h3 className="text-sm font-medium text-muted-foreground mb-2">Assets Needing Repair</h3>
           <div className="text-3xl font-bold text-red-400">4</div>
         </div>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
+        <div className="rounded-xl border border-border bg-muted p-6 backdrop-blur-sm">
           <h3 className="text-sm font-medium text-muted-foreground mb-2">Scheduled Maintenance</h3>
-          <div className="text-3xl font-bold text-white">12</div>
+          <div className="text-3xl font-bold text-foreground">12</div>
           <div className="text-xs text-muted-foreground mt-2">Within next 30 days</div>
         </div>
-        <div className="rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
+        <div className="rounded-xl border border-border bg-muted p-6 backdrop-blur-sm">
           <h3 className="text-sm font-medium text-muted-foreground mb-2">Total Repair Cost (YTD)</h3>
-          <div className="text-3xl font-bold text-white">$4,250</div>
+          <div className="text-3xl font-bold text-foreground">$4,250</div>
         </div>
       </div>
 
-      <div className="rounded-xl border border-white/10 bg-black/40 overflow-hidden">
-        <div className="flex items-center justify-between p-4 border-b border-white/10 bg-white/5">
+      <div className="rounded-xl border border-border bg-card overflow-hidden">
+        <div className="flex items-center justify-between p-4 border-b border-border bg-muted">
           <div className="flex items-center gap-2 w-full max-w-sm relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <input 
               placeholder="Search repairs and assets..." 
-              className="w-full bg-black/40 border border-white/10 rounded-lg pl-9 pr-4 py-2 text-sm focus:outline-none focus:border-primary/50 text-white"
+              className="w-full bg-card border border-border rounded-lg pl-9 pr-4 py-2 text-sm focus:outline-none focus:border-primary/50 text-foreground"
             />
           </div>
-          <Button variant="outline" size="sm" className="bg-transparent border-white/10 hover:bg-white/10">
+          <Button variant="outline" size="sm" className="bg-transparent border-border hover:bg-muted-foreground/10">
             <Filter className="mr-2 h-4 w-4" />
             Filter
           </Button>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full text-sm text-left">
-            <thead className="text-xs text-muted-foreground bg-white/5 uppercase border-b border-white/10">
+            <thead className="text-xs text-muted-foreground bg-muted uppercase border-b border-border">
               <tr>
                 <th className="px-6 py-4 font-medium">Asset / Item</th>
                 <th className="px-6 py-4 font-medium">Location</th>
@@ -84,13 +84,13 @@ export default async function RepairPage() {
             </thead>
             <tbody className="divide-y divide-white/5">
               {displayRepairs.map((repair: any, i: number) => (
-                <tr key={repair.id || i} className="hover:bg-white/5 transition-colors">
-                  <td className="px-6 py-4 font-medium text-white flex items-center gap-2">
+                <tr key={repair.id || i} className="hover:bg-muted transition-colors">
+                  <td className="px-6 py-4 font-medium text-foreground flex items-center gap-2">
                     <Wrench className="h-4 w-4 text-muted-foreground" />
                     {repair.title || repair.name}
                   </td>
                   <td className="px-6 py-4 text-muted-foreground">{repair.location || repair.loc}</td>
-                  <td className="px-6 py-4 text-white max-w-[200px] truncate" title={repair.description || repair.issue}>{repair.description || repair.issue}</td>
+                  <td className="px-6 py-4 text-foreground max-w-[200px] truncate" title={repair.description || repair.issue}>{repair.description || repair.issue}</td>
                   <td className="px-6 py-4">
                     <span className={`px-2.5 py-1 rounded-full text-xs font-medium border flex w-fit items-center gap-1 ${
                       repair.status === 'Scheduled' || repair.status === 'scheduled' ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' : 
@@ -103,7 +103,7 @@ export default async function RepairPage() {
                   </td>
                   <td className="px-6 py-4 text-muted-foreground">{repair.assigned_to || repair.ass}</td>
                   <td className="px-6 py-4 text-right">
-                    <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-muted-foreground hover:text-white">
+                    <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-muted-foreground hover:text-foreground">
                       <MoreHorizontal className="h-4 w-4" />
                     </Button>
                   </td>

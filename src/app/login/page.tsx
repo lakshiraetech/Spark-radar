@@ -9,19 +9,17 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { login } from "../actions/auth"
 
-export default function LoginPage() {
+export default function LoginPage({
+  searchParams,
+}: {
+  searchParams: { error?: string; message?: string }
+}) {
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
 
   const handleSimulatedAuth = (e: React.FormEvent) => {
     e.preventDefault()
-    setIsLoading(true)
-    // Simulate network request for realistic commercial feel
-    setTimeout(() => {
-      setIsLoading(false)
-      // Navigate to dashboard to "fake" successful login/signup for the preview
-      router.push("/dashboard")
-    }, 1500)
+    alert("OAuth login is not configured yet. Please sign in with email.")
   }
 
   return (
@@ -37,18 +35,30 @@ export default function LoginPage() {
       >
         <div className="flex flex-col items-center mb-8">
           <div className="h-12 w-12 rounded-xl bg-primary flex items-center justify-center mb-4 shadow-[0_0_20px_rgba(124,58,237,0.5)]">
-            <Zap className="h-6 w-6 text-white" />
+            <Zap className="h-6 w-6 text-foreground" />
           </div>
-          <h1 className="text-3xl font-bold tracking-tight text-white mb-2">Welcome Back</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-foreground mb-2">Welcome Back</h1>
           <p className="text-muted-foreground text-center">
             Sign in to Spark Radar to manage your operations.
           </p>
         </div>
 
+        {searchParams?.error && (
+          <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-500 text-sm">
+            {searchParams.error}
+          </div>
+        )}
+        
+        {searchParams?.message && (
+          <div className="mb-6 p-4 bg-green-500/10 border border-green-500/20 rounded-xl text-green-500 text-sm">
+            {searchParams.message}
+          </div>
+        )}
+
         <div className="space-y-4">
           <Button 
             variant="outline" 
-            className="w-full h-12 bg-white/5 border-white/10 hover:bg-white/10 text-white rounded-xl transition-all"
+            className="w-full h-12 bg-muted border-border hover:bg-muted-foreground/10 text-foreground rounded-xl transition-all"
             onClick={() => handleSimulatedAuth({ preventDefault: () => {} } as any)}
           >
             <svg viewBox="0 0 24 24" className="mr-2 h-5 w-5" fill="currentColor">
@@ -58,7 +68,7 @@ export default function LoginPage() {
           </Button>
           <Button 
             variant="outline" 
-            className="w-full h-12 bg-white/5 border-white/10 hover:bg-white/10 text-white rounded-xl transition-all"
+            className="w-full h-12 bg-muted border-border hover:bg-muted-foreground/10 text-foreground rounded-xl transition-all"
             onClick={() => handleSimulatedAuth({ preventDefault: () => {} } as any)}
           >
             <svg viewBox="0 0 24 24" className="mr-2 h-5 w-5" fill="currentColor">
@@ -73,7 +83,7 @@ export default function LoginPage() {
 
         <div className="relative my-8">
           <div className="absolute inset-0 flex items-center">
-            <span className="w-full border-t border-white/10" />
+            <span className="w-full border-t border-border" />
           </div>
           <div className="relative flex justify-center text-xs uppercase">
             <span className="bg-background/80 backdrop-blur-sm px-2 text-muted-foreground">
@@ -88,7 +98,7 @@ export default function LoginPage() {
               name="email"
               type="email" 
               placeholder="name@company.com" 
-              className="h-12 bg-black/40 border-white/10 text-white placeholder:text-muted-foreground focus-visible:ring-primary rounded-xl"
+              className="h-12 bg-card border-border text-foreground placeholder:text-muted-foreground focus-visible:ring-primary rounded-xl"
               required
             />
           </div>
@@ -97,14 +107,14 @@ export default function LoginPage() {
               name="password"
               type="password" 
               placeholder="••••••••" 
-              className="h-12 bg-black/40 border-white/10 text-white placeholder:text-muted-foreground focus-visible:ring-primary rounded-xl"
+              className="h-12 bg-card border-border text-foreground placeholder:text-muted-foreground focus-visible:ring-primary rounded-xl"
               required
             />
           </div>
           
           <Button 
             type="submit" 
-            className="w-full h-12 bg-primary hover:bg-primary/90 text-white rounded-xl font-medium mt-2 shadow-[0_0_20px_rgba(124,58,237,0.3)] transition-all flex items-center justify-center gap-2"
+            className="w-full h-12 bg-primary hover:bg-primary/90 text-foreground rounded-xl font-medium mt-2 shadow-[0_0_20px_rgba(124,58,237,0.3)] transition-all flex items-center justify-center gap-2"
           >
             Sign In <ArrowRight className="h-4 w-4" />
           </Button>

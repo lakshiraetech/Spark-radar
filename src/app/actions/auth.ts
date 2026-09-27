@@ -25,6 +25,10 @@ export async function signup(formData: FormData) {
   if (error) {
     redirect(`/signup?error=${encodeURIComponent(error.message)}`)
   }
+  
+  if (data?.session === null && data?.user !== null) {
+    redirect(`/signup?message=${encodeURIComponent("Please check your email to confirm your account.")}`)
+  }
 
   // Next steps after signup (e.g. redirecting to dashboard)
   redirect("/dashboard")
