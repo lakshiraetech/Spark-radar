@@ -1,9 +1,35 @@
 import { Button } from "@/components/ui/button"
 import { PlusCircle, Search, Filter, MoreHorizontal, Truck, Star } from "lucide-react"
+import { getVendors } from "@/app/actions/vendors"
 
-export default function VendorsPage() {
+export default async function VendorsPage() {
+  let vendors = []
+  let error = null
+
+  try {
+    vendors = await getVendors()
+  } catch (e: any) {
+    error = e.message || "Failed to fetch vendors"
+  }
+
+  // Fallback dummy data if DB is empty or fails
+  const displayVendors = vendors.length > 0 ? vendors : [
+    { name: "AWS", category: "Cloud Infrastructure", contact_email: "aws-account@spark.ai", rating: 5, status: "Active" },
+    { name: "Salesforce", category: "CRM Software", contact_email: "rep@salesforce.com", rating: 4, status: "Active" },
+    { name: "WeWork", category: "Real Estate", contact_email: "community@wework.com", rating: 3, status: "Under Review" },
+    { name: "Stripe", category: "Payments", contact_email: "support@stripe.com", rating: 5, status: "Active" },
+    { name: "Acme Cleaning", category: "Facilities", contact_email: "bob@acme.com", rating: 2, status: "Terminated" },
+  ]
+
   return (
     <div className="flex flex-col gap-6">
+      {error && (
+        <div className="bg-red-500/10 border border-red-500/20 text-red-400 p-4 rounded-xl text-sm">
+          <strong>Database Connection Error:</strong> {error}. 
+          <span className="block mt-1 opacity-80">Showing demo data until Supabase keys are configured in Vercel.</span>
+        </div>
+      )}
+
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Vendors</h1>
@@ -59,33 +85,27 @@ export default function VendorsPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-white/5">
-              {[
-                { name: "AWS", cat: "Cloud Infrastructure", contact: "aws-account@spark.ai", rating: 5, status: "Active" },
-                { name: "Salesforce", cat: "CRM Software", contact: "rep@salesforce.com", rating: 4, status: "Active" },
-                { name: "WeWork", cat: "Real Estate", contact: "community@wework.com", rating: 3, status: "Under Review" },
-                { name: "Stripe", cat: "Payments", contact: "support@stripe.com", rating: 5, status: "Active" },
-                { name: "Acme Cleaning", cat: "Facilities", contact: "bob@acme.com", rating: 2, status: "Terminated" },
-              ].map((vendor, i) => (
-                <tr key={i} className="hover:bg-white/5 transition-colors">
+              {displayVendors.map((vendor: any, i: number) => (
+                <tr key={vendor.id || i} className="hover:bg-white/5 transition-colors">
                   <td className="px-6 py-4 font-medium text-white flex items-center gap-2">
                     <div className="h-8 w-8 rounded bg-primary/20 flex items-center justify-center">
                       <Truck className="h-4 w-4 text-primary" />
                     </div>
                     {vendor.name}
                   </td>
-                  <td className="px-6 py-4 text-muted-foreground">{vendor.cat}</td>
-                  <td className="px-6 py-4 text-muted-foreground">{vendor.contact}</td>
+                  <td className="px-6 py-4 text-muted-foreground">{vendor.category || vendor.cat}</td>
+                  <td className="px-6 py-4 text-muted-foreground">{vendor.contact_email || vendor.contact}</td>
                   <td className="px-6 py-4">
                     <div className="flex items-center text-yellow-400">
                       {[...Array(5)].map((_, j) => (
-                        <Star key={j} className={`h-3 w-3 ${j < vendor.rating ? "fill-yellow-400" : "text-white/20 fill-transparent"}`} />
+                        <Star key={j} className={`h-3 w-3 ${j < (vendor.rating || 3) ? "fill-yellow-400" : "text-white/20 fill-transparent"}`} />
                       ))}
                     </div>
                   </td>
                   <td className="px-6 py-4">
                     <span className={`px-2.5 py-1 rounded-full text-xs font-medium border ${
-                      vendor.status === 'Active' ? 'bg-green-500/10 text-green-400 border-green-500/20' : 
-                      vendor.status === 'Under Review' ? 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20' : 
+                      vendor.status === 'Active' || vendor.status === 'active' ? 'bg-green-500/10 text-green-400 border-green-500/20' : 
+                      vendor.status === 'Under Review' || vendor.status === 'under_review' ? 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20' : 
                       'bg-red-500/10 text-red-400 border-red-500/20'
                     }`}>
                       {vendor.status}

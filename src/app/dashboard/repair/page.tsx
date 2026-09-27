@@ -1,9 +1,34 @@
 import { Button } from "@/components/ui/button"
 import { PlusCircle, Search, Filter, MoreHorizontal, Wrench, AlertTriangle } from "lucide-react"
+import { getRepairs } from "@/app/actions/repair"
 
-export default function RepairPage() {
+export default async function RepairPage() {
+  let repairs = []
+  let error = null
+
+  try {
+    repairs = await getRepairs()
+  } catch (e: any) {
+    error = e.message || "Failed to fetch repairs"
+  }
+
+  // Fallback dummy data if DB is empty or fails
+  const displayRepairs = repairs.length > 0 ? repairs : [
+    { title: "HVAC Unit A", location: "Building 1, Roof", description: "Making loud grinding noise", status: "Critical", assigned_to: "Acme Repair Co." },
+    { title: "Conference Room Projector", location: "Room 4B", description: "Bulb needs replacement", status: "Pending", assigned_to: "Internal IT" },
+    { title: "Employee Laptop (MacBook)", location: "Remote (Jane D.)", description: "Battery swelling", status: "Critical", assigned_to: "Apple Care" },
+    { title: "Espresso Machine", location: "Kitchen 2", description: "Routine Descaling", status: "Scheduled", assigned_to: "Office Admin" },
+  ]
+
   return (
     <div className="flex flex-col gap-6">
+      {error && (
+        <div className="bg-red-500/10 border border-red-500/20 text-red-400 p-4 rounded-xl text-sm">
+          <strong>Database Connection Error:</strong> {error}. 
+          <span className="block mt-1 opacity-80">Showing demo data until Supabase keys are configured in Vercel.</span>
+        </div>
+      )}
+
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold tracking-tight">Repairs & Assets</h1>
@@ -58,30 +83,25 @@ export default function RepairPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-white/5">
-              {[
-                { name: "HVAC Unit A", loc: "Building 1, Roof", issue: "Making loud grinding noise", status: "Critical", ass: "Acme Repair Co." },
-                { name: "Conference Room Projector", loc: "Room 4B", issue: "Bulb needs replacement", status: "Pending", ass: "Internal IT" },
-                { name: "Employee Laptop (MacBook)", loc: "Remote (Jane D.)", issue: "Battery swelling", status: "Critical", ass: "Apple Care" },
-                { name: "Espresso Machine", loc: "Kitchen 2", issue: "Routine Descaling", status: "Scheduled", ass: "Office Admin" },
-              ].map((repair, i) => (
-                <tr key={i} className="hover:bg-white/5 transition-colors">
+              {displayRepairs.map((repair: any, i: number) => (
+                <tr key={repair.id || i} className="hover:bg-white/5 transition-colors">
                   <td className="px-6 py-4 font-medium text-white flex items-center gap-2">
                     <Wrench className="h-4 w-4 text-muted-foreground" />
-                    {repair.name}
+                    {repair.title || repair.name}
                   </td>
-                  <td className="px-6 py-4 text-muted-foreground">{repair.loc}</td>
-                  <td className="px-6 py-4 text-white max-w-[200px] truncate" title={repair.issue}>{repair.issue}</td>
+                  <td className="px-6 py-4 text-muted-foreground">{repair.location || repair.loc}</td>
+                  <td className="px-6 py-4 text-white max-w-[200px] truncate" title={repair.description || repair.issue}>{repair.description || repair.issue}</td>
                   <td className="px-6 py-4">
                     <span className={`px-2.5 py-1 rounded-full text-xs font-medium border flex w-fit items-center gap-1 ${
-                      repair.status === 'Scheduled' ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' : 
-                      repair.status === 'Critical' ? 'bg-red-500/10 text-red-400 border-red-500/20' : 
+                      repair.status === 'Scheduled' || repair.status === 'scheduled' ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' : 
+                      repair.status === 'Critical' || repair.status === 'critical' ? 'bg-red-500/10 text-red-400 border-red-500/20' : 
                       'bg-yellow-500/10 text-yellow-400 border-yellow-500/20'
                     }`}>
-                      {repair.status === 'Critical' && <AlertTriangle className="h-3 w-3" />}
+                      {(repair.status === 'Critical' || repair.status === 'critical') && <AlertTriangle className="h-3 w-3" />}
                       {repair.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-muted-foreground">{repair.ass}</td>
+                  <td className="px-6 py-4 text-muted-foreground">{repair.assigned_to || repair.ass}</td>
                   <td className="px-6 py-4 text-right">
                     <Button variant="ghost" size="sm" className="h-8 w-8 p-0 text-muted-foreground hover:text-white">
                       <MoreHorizontal className="h-4 w-4" />
