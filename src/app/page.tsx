@@ -1,174 +1,345 @@
-"use client"
+'use client'
 
+import Link from 'next/link'
 import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import { motion } from "framer-motion"
-import { ArrowRight, Activity, ShieldCheck, Zap, BarChart, CheckCircle2 } from "lucide-react"
+import { motion } from 'framer-motion'
+import { 
+  ArrowRight, Zap, CheckCircle2, AlertCircle, Clock, Search, 
+  Briefcase, User, Wallet, RotateCw, Wrench, Package, Heart, Bot, Building2
+} from 'lucide-react'
 
-export default function Home() {
+export default function LandingPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-background text-foreground overflow-hidden">
-      {/* Navbar */}
-      <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-background/60 backdrop-blur-xl">
-        <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
+    <div className="flex flex-col min-h-screen bg-[#030712] text-white overflow-hidden">
+      
+      {/* Navigation */}
+      <header className="fixed top-0 w-full z-50 bg-[#030712]/80 backdrop-blur-md border-b border-white/10">
+        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
-              <Zap className="h-5 w-5 text-white" />
+            <div className="h-8 w-8 rounded-lg bg-primary/20 flex items-center justify-center border border-primary/50">
+              <Zap className="h-5 w-5 text-primary" />
             </div>
             <span className="text-xl font-bold tracking-tight">Spark Radar</span>
           </div>
-          <nav className="hidden md:flex gap-8 text-sm font-medium text-muted-foreground">
-            <Link href="#features" className="hover:text-primary transition-colors">Features</Link>
-            <Link href="#solutions" className="hover:text-primary transition-colors">Solutions</Link>
-            <Link href="#pricing" className="hover:text-primary transition-colors">Pricing</Link>
+          <nav className="hidden md:flex gap-8 text-sm font-medium text-white/70">
+            <Link href="#engines" className="hover:text-white transition-colors">The 5 Engines</Link>
+            <Link href="#workspaces" className="hover:text-white transition-colors">Workspaces</Link>
+            <Link href="#ai" className="hover:text-white transition-colors">Spark AI</Link>
+            <Link href="#pricing" className="hover:text-white transition-colors">Pricing</Link>
           </nav>
           <div className="flex items-center gap-4">
-            <Link href="/login">
-              <Button variant="ghost" className="hidden md:inline-flex text-muted-foreground hover:text-white">
-                Log in
-              </Button>
+            <Link href="/login" className="text-sm font-medium hover:text-primary transition-colors hidden sm:block">
+              Sign In
             </Link>
             <Link href="/login">
-              <Button className="bg-primary hover:bg-primary/90 text-white rounded-full px-6 shadow-[0_0_20px_rgba(124,58,237,0.3)]">
-                Get Started
+              <Button className="rounded-full bg-primary hover:bg-primary/90 text-white border-0">
+                Start Free
               </Button>
             </Link>
           </div>
         </div>
       </header>
 
-      <main className="flex-1 hero-gradient relative">
-        {/* Background Elements */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px] -z-10" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[120px] -z-10" />
-
-        {/* Hero Section */}
-        <section className="w-full py-24 md:py-32 lg:py-48 flex items-center justify-center">
-          <div className="container px-4 md:px-6 text-center">
+      <main className="flex-1 pt-16">
+        
+        {/* HERO SECTION */}
+        <section className="relative w-full py-20 md:py-32 lg:py-40 flex items-center justify-center hero-gradient">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px] -z-10" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-[120px] -z-10" />
+          
+          <div className="container px-4 text-center">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               className="flex flex-col items-center gap-6"
             >
-              <div className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm text-primary backdrop-blur-sm">
+              <div className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm text-primary backdrop-blur-sm">
                 <span className="flex h-2 w-2 rounded-full bg-primary mr-2 animate-pulse"></span>
-                Spark Radar 2.0 is now live
+                One intelligent radar for every important task.
               </div>
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/60 max-w-4xl">
-                The Intelligent Nervous System for your Business
+              
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/60 max-w-5xl leading-tight">
+                Never Miss <br/> What Matters.
               </h1>
-              <p className="mx-auto max-w-[700px] text-lg md:text-xl text-muted-foreground mt-4">
-                One intelligent radar for every important payment, renewal, repair, vendor follow-up, document, and task. Never drop the ball again.
+              
+              <p className="mx-auto max-w-[700px] text-lg md:text-xl text-muted-foreground mt-4 leading-relaxed">
+                Spark Radar keeps your payments, renewals, repairs, documents, vendors and important tasks visible in one intelligent workspace.
               </p>
+              
               <div className="flex flex-col sm:flex-row gap-4 mt-8">
                 <Link href="/login">
                   <Button size="lg" className="h-14 px-8 text-base rounded-full bg-primary hover:bg-primary/90 text-white shadow-[0_0_30px_rgba(124,58,237,0.4)] transition-all hover:scale-105">
-                    Start for free <ArrowRight className="ml-2 h-5 w-5" />
+                    Start Free
                   </Button>
                 </Link>
-                <Link href="#demo">
+                <Link href="#engines">
                   <Button size="lg" variant="outline" className="h-14 px-8 text-base rounded-full border-white/20 bg-white/5 hover:bg-white/10 text-white backdrop-blur-sm transition-all hover:scale-105">
-                    Book a demo
+                    See How It Works
                   </Button>
                 </Link>
-              </div>
-            </motion.div>
-
-            {/* Dashboard Mockup */}
-            <motion.div 
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="mt-20 relative mx-auto max-w-6xl animate-float"
-            >
-              <div className="rounded-xl border border-white/10 bg-background/50 p-2 backdrop-blur-xl shadow-2xl overflow-hidden">
-                <div className="rounded-lg border border-white/5 bg-[#0a0a0a] overflow-hidden">
-                  <div className="flex items-center gap-2 border-b border-white/5 bg-white/5 px-4 py-3">
-                    <div className="flex gap-1.5">
-                      <div className="h-3 w-3 rounded-full bg-red-500/80" />
-                      <div className="h-3 w-3 rounded-full bg-yellow-500/80" />
-                      <div className="h-3 w-3 rounded-full bg-green-500/80" />
-                    </div>
-                  </div>
-                  <div className="p-8 grid grid-cols-1 md:grid-cols-4 gap-6">
-                    <div className="col-span-1 space-y-4">
-                      <div className="h-8 w-3/4 rounded bg-white/5" />
-                      <div className="h-4 w-full rounded bg-white/5" />
-                      <div className="h-4 w-5/6 rounded bg-white/5" />
-                      <div className="h-4 w-4/6 rounded bg-white/5" />
-                    </div>
-                    <div className="col-span-3 grid grid-cols-2 gap-4">
-                      <div className="h-32 rounded-lg bg-primary/10 border border-primary/20 flex flex-col justify-center p-6">
-                        <div className="text-sm text-primary/80 mb-2">Pending Invoices</div>
-                        <div className="text-3xl font-bold text-white">$12,450</div>
-                      </div>
-                      <div className="h-32 rounded-lg bg-white/5 border border-white/5 flex flex-col justify-center p-6">
-                        <div className="text-sm text-muted-foreground mb-2">Upcoming Renewals</div>
-                        <div className="text-3xl font-bold text-white">4 items</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </motion.div>
           </div>
         </section>
 
-        {/* Features Section */}
-        <section id="features" className="w-full py-24 border-t border-white/5 bg-black/40">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center text-center mb-16">
-              <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-white mb-4">
-                Everything you need to run your operations
-              </h2>
-              <p className="text-muted-foreground max-w-[800px] text-lg">
-                Stop manually tracking tasks in spreadsheets. Spark Radar automates your workflows using intelligent agents and real-time alerts.
-              </p>
+        {/* PROBLEM STATEMENT */}
+        <section className="w-full py-24 bg-black/50 border-y border-white/5 relative overflow-hidden">
+          <div className="container px-4 text-center relative z-10">
+            <p className="text-xl md:text-3xl font-medium leading-relaxed max-w-4xl mx-auto text-white/90">
+              "What do I need to collect, pay, renew, repair, follow up or complete — and when?"
+            </p>
+            <p className="mt-6 text-primary font-semibold tracking-wide uppercase text-sm">
+              Spark Radar helps you answer this instantly.
+            </p>
+          </div>
+        </section>
+
+        {/* TWO OPERATING MODES */}
+        <section id="workspaces" className="w-full py-24 relative">
+          <div className="container px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Two Operating Modes</h2>
+              <p className="text-muted-foreground text-lg">Built for the complexity of business, simplified for your personal life.</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {[
-                { title: "Intelligent Collection", desc: "Automate invoice follow-ups and instantly track payment status across all your vendors and clients.", icon: Activity },
-                { title: "Renewal Radar", desc: "Never miss a software subscription, contract, or domain renewal again. Get alerted before you get charged.", icon: Zap },
-                { title: "Secure & Compliant", desc: "Enterprise-grade security with role-based access control, audit logs, and complete data isolation.", icon: ShieldCheck }
-              ].map((feature, i) => (
-                <motion.div 
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  viewport={{ once: true }}
-                  className="glass-panel p-8 rounded-2xl flex flex-col items-start gap-4 transition-all hover:bg-white/5"
-                >
-                  <div className="h-12 w-12 rounded-lg bg-primary/20 flex items-center justify-center">
-                    <feature.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white">{feature.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {feature.desc}
-                  </p>
-                </motion.div>
-              ))}
+            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              <div className="glass-panel p-10 rounded-3xl border border-white/10 relative overflow-hidden group hover:border-primary/50 transition-colors">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-[80px] -z-10 group-hover:bg-blue-500/20 transition-colors" />
+                <User className="h-12 w-12 text-blue-400 mb-6" />
+                <h3 className="text-2xl font-bold mb-2">Personal Workspace</h3>
+                <p className="text-muted-foreground mb-8">For normal users managing life's admin.</p>
+                <ul className="grid grid-cols-2 gap-y-3 gap-x-4 text-sm text-white/80">
+                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> Bills & Insurance</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> Vehicle Service</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> Documents</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> Memberships</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> Family Responsibilities</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> Important Dates</li>
+                </ul>
+              </div>
+
+              <div className="glass-panel p-10 rounded-3xl border border-white/10 relative overflow-hidden group hover:border-primary/50 transition-colors">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 rounded-full blur-[80px] -z-10 group-hover:bg-purple-500/20 transition-colors" />
+                <Building2 className="h-12 w-12 text-primary mb-6" />
+                <h3 className="text-2xl font-bold mb-2">Business Workspace</h3>
+                <p className="text-muted-foreground mb-8">For companies tracking operations.</p>
+                <ul className="grid grid-cols-2 gap-y-3 gap-x-4 text-sm text-white/80">
+                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> Receivables & Invoices</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> Vendor Management</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> Contracts & AMCs</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> Team Assignments</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> Service/Repair Jobs</li>
+                  <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4 text-primary" /> AI Assistant & Reports</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* THE FIVE ENGINES */}
+        <section id="engines" className="w-full py-24 bg-black/40 border-y border-white/5">
+          <div className="container px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">The Spark Radar Engines</h2>
+              <p className="text-muted-foreground text-lg">One unified platform powered by distinct, purpose-built engines.</p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {/* Collect */}
+              <div className="glass-panel p-8 rounded-2xl">
+                <Wallet className="h-10 w-10 text-emerald-400 mb-4" />
+                <h3 className="text-xl font-bold mb-2">Spark Collect</h3>
+                <p className="text-sm text-muted-foreground mb-4">Track money that should be received. Automate aging, payment links, and reminders.</p>
+                <div className="bg-black/50 p-4 rounded-xl border border-white/5 text-sm">
+                  <div className="flex justify-between mb-2"><span className="text-white/60">Invoice:</span><span>INV-1045</span></div>
+                  <div className="flex justify-between mb-2"><span className="text-white/60">Amount:</span><span className="font-bold text-emerald-400">₹39,000</span></div>
+                  <div className="flex justify-between"><span className="text-white/60">Status:</span><span className="text-yellow-400 flex items-center gap-1"><AlertCircle className="w-3 h-3"/> Pending</span></div>
+                </div>
+              </div>
+
+              {/* Renew */}
+              <div className="glass-panel p-8 rounded-2xl">
+                <RotateCw className="h-10 w-10 text-blue-400 mb-4" />
+                <h3 className="text-xl font-bold mb-2">Spark Renew</h3>
+                <p className="text-sm text-muted-foreground mb-4">Anything with an expiration date. Contracts, domains, insurance, and AMCs.</p>
+                <div className="bg-black/50 p-4 rounded-xl border border-white/5 text-sm space-y-2">
+                  <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-red-500"/> <span className="text-white/60">1 day:</span> Critical</div>
+                  <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-orange-500"/> <span className="text-white/60">7 days:</span> Urgent</div>
+                  <div className="flex items-center gap-2"><div className="w-2 h-2 rounded-full bg-yellow-500"/> <span className="text-white/60">14 days:</span> Attention</div>
+                </div>
+              </div>
+
+              {/* Repair */}
+              <div className="glass-panel p-8 rounded-2xl">
+                <Wrench className="h-10 w-10 text-orange-400 mb-4" />
+                <h3 className="text-xl font-bold mb-2">Spark Repair</h3>
+                <p className="text-sm text-muted-foreground mb-4">Track customer service jobs step-by-step from estimate to final delivery.</p>
+                <div className="bg-black/50 p-4 rounded-xl border border-white/5 text-sm relative">
+                  <div className="absolute left-[21px] top-6 bottom-6 w-px bg-white/10" />
+                  <div className="flex items-center gap-3 mb-3 relative z-10"><CheckCircle2 className="w-4 h-4 text-emerald-400"/> Diagnosis</div>
+                  <div className="flex items-center gap-3 mb-3 relative z-10"><Clock className="w-4 h-4 text-yellow-400"/> Approval</div>
+                  <div className="flex items-center gap-3 relative z-10"><div className="w-4 h-4 rounded-full border-2 border-white/20"/> Repair</div>
+                </div>
+              </div>
+
+              {/* Vendor */}
+              <div className="glass-panel p-8 rounded-2xl">
+                <Package className="h-10 w-10 text-purple-400 mb-4" />
+                <h3 className="text-xl font-bold mb-2">Spark Vendor</h3>
+                <p className="text-sm text-muted-foreground mb-4">Track purchase orders, expected deliveries, pending payments, and vendor docs.</p>
+                <div className="bg-black/50 p-4 rounded-xl border border-white/5 text-sm">
+                  <div className="font-medium mb-2">Vendor: XYZ Auto Parts</div>
+                  <div className="flex justify-between mb-1"><span className="text-white/60">Delivery:</span><span>Expected 30 Sep</span></div>
+                  <div className="flex justify-between"><span className="text-white/60">Payment:</span><span className="text-yellow-400">₹45,000 pending</span></div>
+                </div>
+              </div>
+
+              {/* Life */}
+              <div className="glass-panel p-8 rounded-2xl md:col-span-2">
+                <Heart className="h-10 w-10 text-pink-400 mb-4" />
+                <h3 className="text-xl font-bold mb-2">Spark Life</h3>
+                <p className="text-sm text-muted-foreground mb-4 max-w-2xl">Because people forget bills, documents, and important dates. Expanding Spark Radar from a business SaaS into an essential tool for everyday life.</p>
+                <div className="flex flex-wrap gap-2">
+                  {['Electricity bill', 'Passport', 'Driving licence', 'Medical appointment', 'School fee'].map(tag => (
+                    <span key={tag} className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-white/80">{tag}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SPARK AI SECTION */}
+        <section id="ai" className="w-full py-24 relative overflow-hidden">
+          <div className="container px-4">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <div className="inline-flex items-center rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm text-primary backdrop-blur-sm mb-6">
+                  <Bot className="w-4 h-4 mr-2" /> Powered by Open AI
+                </div>
+                <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">Not merely a chatbot. <br/>An executive assistant.</h2>
+                <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
+                  The AI understands your actual Spark Radar records. Ask natural questions, get exact data, and let the AI execute authorized commands like creating reminders or drafting invoices.
+                </p>
+                <ul className="space-y-4">
+                  <li className="flex items-center gap-3 bg-white/5 p-3 rounded-lg border border-white/5">
+                    <Search className="w-5 h-5 text-primary" /> "Show overdue payments."
+                  </li>
+                  <li className="flex items-center gap-3 bg-white/5 p-3 rounded-lg border border-white/5">
+                    <Search className="w-5 h-5 text-primary" /> "Which renewals are coming this month?"
+                  </li>
+                  <li className="flex items-center gap-3 bg-white/5 p-3 rounded-lg border border-white/5">
+                    <Search className="w-5 h-5 text-primary" /> "What should I handle today?"
+                  </li>
+                </ul>
+              </div>
+              <div className="glass-panel p-6 rounded-3xl border border-white/10">
+                <div className="bg-black/50 rounded-2xl p-6 border border-white/5 font-mono text-sm leading-relaxed">
+                  <div className="text-white/50 mb-4">{">"} What is going to become a problem in the next 30 days?</div>
+                  <div className="text-primary mb-2">Analyzing database records...</div>
+                  <div className="text-white/90">3 important items need attention:</div>
+                  <br/>
+                  <div className="text-red-400">1. Car insurance expires in 9 days.</div>
+                  <div className="text-orange-400">2. ABC Traders payment of ₹39,000 is overdue.</div>
+                  <div className="text-yellow-400">3. Office AMC renewal is due in 16 days.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* PRICING */}
+        <section id="pricing" className="w-full py-24 bg-black/40 border-y border-white/5">
+          <div className="container px-4">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-4">Pricing Structure</h2>
+              <p className="text-muted-foreground text-lg">Start for free, scale to the enterprise.</p>
+            </div>
+
+            <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
+              
+              <div className="glass-panel p-6 rounded-2xl flex flex-col">
+                <h3 className="font-bold text-lg text-white/80">Free</h3>
+                <div className="text-3xl font-bold my-4">₹0<span className="text-sm font-normal text-muted-foreground">/mo</span></div>
+                <ul className="text-sm text-muted-foreground space-y-3 mb-8 flex-1">
+                  <li>20 active records</li>
+                  <li>1 workspace</li>
+                  <li>1 user</li>
+                  <li>Basic reminders</li>
+                </ul>
+                <Button variant="outline" className="w-full border-white/20 bg-white/5 hover:bg-white/10 text-white">Start Free</Button>
+              </div>
+
+              <div className="glass-panel p-6 rounded-2xl flex flex-col">
+                <h3 className="font-bold text-lg text-white/80">Personal</h3>
+                <div className="text-3xl font-bold my-4">₹199<span className="text-sm font-normal text-muted-foreground">/mo</span></div>
+                <ul className="text-sm text-muted-foreground space-y-3 mb-8 flex-1">
+                  <li>100 records</li>
+                  <li>1 user</li>
+                  <li>Documents</li>
+                  <li>Email notifications</li>
+                </ul>
+                <Button variant="outline" className="w-full border-white/20 bg-white/5 hover:bg-white/10 text-white">Choose Plan</Button>
+              </div>
+
+              <div className="glass-panel p-6 rounded-2xl flex flex-col border-primary/50 relative overflow-hidden">
+                <div className="absolute top-0 right-0 left-0 h-1 bg-primary"></div>
+                <h3 className="font-bold text-lg text-primary">Business Starter</h3>
+                <div className="text-3xl font-bold my-4">₹499<span className="text-sm font-normal text-muted-foreground">/mo</span></div>
+                <ul className="text-sm text-muted-foreground space-y-3 mb-8 flex-1">
+                  <li>500 records</li>
+                  <li>5 users</li>
+                  <li>Customers</li>
+                  <li>Collect & Renew modules</li>
+                </ul>
+                <Button className="w-full bg-primary hover:bg-primary/90 text-white">Choose Plan</Button>
+              </div>
+
+              <div className="glass-panel p-6 rounded-2xl flex flex-col">
+                <h3 className="font-bold text-lg text-white/80">Business Pro</h3>
+                <div className="text-3xl font-bold my-4">₹999<span className="text-sm font-normal text-muted-foreground">/mo</span></div>
+                <ul className="text-sm text-muted-foreground space-y-3 mb-8 flex-1">
+                  <li>2,500 records</li>
+                  <li>15 users</li>
+                  <li>AI Assistant</li>
+                  <li>Vendor & Reports</li>
+                </ul>
+                <Button variant="outline" className="w-full border-white/20 bg-white/5 hover:bg-white/10 text-white">Choose Plan</Button>
+              </div>
+
+              <div className="glass-panel p-6 rounded-2xl flex flex-col">
+                <h3 className="font-bold text-lg text-white/80">Business Plus</h3>
+                <div className="text-3xl font-bold my-4">₹1,999<span className="text-sm font-normal text-muted-foreground">/mo</span></div>
+                <ul className="text-sm text-muted-foreground space-y-3 mb-8 flex-1">
+                  <li>10,000+ records</li>
+                  <li>50 users</li>
+                  <li>Advanced reports</li>
+                  <li>API & Priority support</li>
+                </ul>
+                <Button variant="outline" className="w-full border-white/20 bg-white/5 hover:bg-white/10 text-white">Choose Plan</Button>
+              </div>
+
             </div>
           </div>
         </section>
 
       </main>
 
-      {/* Footer */}
+      {/* FOOTER */}
       <footer className="border-t border-white/10 bg-background py-12">
-        <div className="container mx-auto px-4 md:px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-2">
             <Zap className="h-5 w-5 text-primary" />
-            <span className="font-bold">Spark Radar SaaS</span>
+            <span className="font-bold">Spark Radar</span>
           </div>
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} Spark Radar Inc. All rights reserved.
           </p>
-          <div className="flex gap-4 text-sm text-muted-foreground">
-            <Link href="#" className="hover:text-white">Privacy</Link>
-            <Link href="#" className="hover:text-white">Terms</Link>
+          <div className="flex gap-6 text-sm text-muted-foreground">
+            <Link href="#" className="hover:text-white transition-colors">Privacy</Link>
+            <Link href="#" className="hover:text-white transition-colors">Terms</Link>
+            <Link href="#" className="hover:text-white transition-colors">Contact</Link>
           </div>
         </div>
       </footer>
