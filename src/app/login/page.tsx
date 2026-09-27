@@ -7,6 +7,7 @@ import { motion } from "framer-motion"
 import { Zap, Mail, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { login } from "../actions/auth"
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false)
@@ -81,9 +82,10 @@ export default function LoginPage() {
           </div>
         </div>
 
-        <form onSubmit={handleSimulatedAuth} className="space-y-4">
+        <form action={login} className="space-y-4">
           <div className="space-y-2">
             <Input 
+              name="email"
               type="email" 
               placeholder="name@company.com" 
               className="h-12 bg-black/40 border-white/10 text-white placeholder:text-muted-foreground focus-visible:ring-primary rounded-xl"
@@ -92,6 +94,7 @@ export default function LoginPage() {
           </div>
           <div className="space-y-2">
             <Input 
+              name="password"
               type="password" 
               placeholder="••••••••" 
               className="h-12 bg-black/40 border-white/10 text-white placeholder:text-muted-foreground focus-visible:ring-primary rounded-xl"
@@ -102,13 +105,8 @@ export default function LoginPage() {
           <Button 
             type="submit" 
             className="w-full h-12 bg-primary hover:bg-primary/90 text-white rounded-xl font-medium mt-2 shadow-[0_0_20px_rgba(124,58,237,0.3)] transition-all flex items-center justify-center gap-2"
-            disabled={isLoading}
           >
-            {isLoading ? (
-              <span className="h-5 w-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-            ) : (
-              <>Sign In <ArrowRight className="h-4 w-4" /></>
-            )}
+            Sign In <ArrowRight className="h-4 w-4" />
           </Button>
         </form>
 
