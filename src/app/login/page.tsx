@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { use, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { motion } from "framer-motion"
@@ -12,8 +12,9 @@ import { login } from "../actions/auth"
 export default function LoginPage({
   searchParams,
 }: {
-  searchParams: { error?: string; message?: string }
+  searchParams: Promise<{ error?: string; message?: string }>
 }) {
+  const { error, message } = use(searchParams)
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
 
@@ -43,15 +44,15 @@ export default function LoginPage({
           </p>
         </div>
 
-        {searchParams?.error && (
+        {error && (
           <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-500 text-sm">
-            {searchParams.error}
+            {error}
           </div>
         )}
         
-        {searchParams?.message && (
+        {message && (
           <div className="mb-6 p-4 bg-green-500/10 border border-green-500/20 rounded-xl text-green-500 text-sm">
-            {searchParams.message}
+            {message}
           </div>
         )}
 
